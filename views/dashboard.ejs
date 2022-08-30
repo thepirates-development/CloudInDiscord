@@ -1,0 +1,15 @@
+<h1>Your files:</h1>
+<% if(files.length===0) { %>
+  <i>You have no files... <a href="/upload">click here</a> to upload one</i>
+<% }; %>
+<% files.forEach(function(info, index) { %>
+  <%= info.content.split(";[/]").at(-1) %> (<%=info.content.split("**")[1]%>)
+  <a href="/view/<%= info.content.split('**').at(1)%>.<%=info.content.split(';[/]').at(-1).split('.').at(-1)%>">view file</a>
+  <a href="/delete/<%= info.content.split('**').at(1)%>.<%=info.content.split(';[/]').at(-1).split('.').at(-1)%>">delete file</a>
+  <br></br>
+<% }); %>
+  <br>
+
+  <h1>Account settings stuff</h1>
+
+<a href="/api/clearAuthCookie">logout (essentialy deletes account, you will no longer have access to edit your files. they will still exist tho)</a>

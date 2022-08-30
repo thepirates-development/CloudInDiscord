@@ -1,0 +1,21 @@
+<html>
+<head>
+<meta name="viewport" content ="width=device-width, initial-scale=1.0">
+<title>Home | Cloud</title>
+<link rel="icon" type="image/x-icon" href="https://cdn.discordapp.com/attachments/955015180218155010/1013741774604337222/thepirates.png">
+</head>
+<body background="https://cdn.discordapp.com/attachments/955015180218155010/1013742779245019216/bg.jpg" style="background-repeat:no-repeat;background-size:100% 100%">
+<center><marquee><scrollammount = 8><font color =Black><font size =10><i>Welcome</i></marquee></font></center>
+<% if (auth === true) {%>
+  <a href="/upload">upload file</a>
+  <br></br>
+<% } else { %>
+    <h2>You dont have a account in our website , Please click the button below to Create an account</h2>
+  <%}%>
+<% if (auth === true) { %>
+<a href="/dashboard">your files</a>
+<% } else { %>
+  <center><a href="/api/setAuthCookie"><button style="background-color:red; border-color:blue; color:white"><h3>Create account</h3></button></center>
+  <% } %>
+
+Can you increase the size of border of the button
