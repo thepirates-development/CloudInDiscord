@@ -1,3 +1,7 @@
+// Local Files
+const config = require("./config")
+const colors = require("./colors");
+
 // Important Packages
 const events = require('events');
 const { waitFor } = require("wait-for-event")
@@ -6,10 +10,6 @@ const express = require("express")
 const path = require("path")
 const multer = require("multer")
 const cookieParser = require('cookie-parser');
-
-// Local Files
-const config = require("./config")
-const colors = require("./colors");
 
 const eventEmitter = new events.EventEmitter();
 module.exports = eventEmitter
@@ -157,7 +157,7 @@ app.get('/view/:id.:fileext', async (req, res) => {
         console.error(err)
       } else {
         //fs.unlinkSync("./uploads/"+filename)
-        console.log("deleted file")
+        console.log(colors("green", "[Logs] ") + "deleted file")
       }
     });
   })
@@ -173,7 +173,7 @@ eventEmitter.on("dashboardList-loopback", (data) => {
 app.get('/delete/:id.:fileext', async (req, res) => {
   eventEmitter.emit("fileDelete", [req.params.id, req.params.fileext, req.cookies])
   await waitFor('fileDeleted', eventEmitter).then(() => {
-    console.log(loopback)
+    console.log(colors("green", "[Logs] ") + loopback)
     if (loopback[0] === "ok") {
       res.redirect("/dashboard")
     } else if (loopback[0] === "bad-auth") {
@@ -206,5 +206,5 @@ app.get('/dashboard', async (req, res) => {
 // is not taken by any other process
 app.listen(config.port, function(error) {
   if (error) throw error
-  console.log(colors("green", "[Modules]") + " Listening to port " + config.port)
+  console.log(colors("green", "[Modules]") + " Port: " + config.port)
 })
